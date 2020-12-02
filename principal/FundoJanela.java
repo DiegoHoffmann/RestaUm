@@ -12,7 +12,7 @@ public class FundoJanela extends JPanel{
 	String imagemResta = f.getAbsolutePath() + "/imagens/Lighthouse.jpg";
 	String marvel =  f.getAbsolutePath() + "/imagens/marvel.png";
 	public void paintComponent(Graphics g) {
-		g.drawImage(this.getImage(marvel), 0, 0, 800, 600, this);
+		g.drawImage(this.getImage(marvel), 0, 0, 800, 700, this);
 	}
 	public BufferedImage getImage(String path) {
 

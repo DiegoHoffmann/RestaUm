@@ -28,13 +28,14 @@ public class Tabuleiro extends JPanel {
 	String imagenCelOff = f.getAbsolutePath() + "/imagens/gemBlack.png";
 	String imagenCelBlue = f.getAbsolutePath() + "/imagens/blue.png";
 	String imagenCelOnSel = f.getAbsolutePath() + "/imagens/gemSel.png";
+	JanelaPrincipal principal = null;
 	static int  tamTab = 7;
 	int linha = 500 / tamTab;
 	int coluna = 500 / tamTab;
-	static int contaPeca = 32;
-	static int deslocamentoX = 30;
+	public int contaPeca = 32;
+	static int deslocamentoX = 150;
 	static int deslocamentoY = 10;
-	static boolean novoJogo = true;
+	public static boolean novoJogo = true;
 	static Peca[][] peca; 
 
 	public Tabuleiro() {
@@ -43,8 +44,12 @@ public class Tabuleiro extends JPanel {
 		
 	}
 
+	public void setJanelaPrincipal(JanelaPrincipal principal){
+		this.principal = principal;
+	}
 	
 	public void paintComponent(Graphics g) {
+		principal.repaint();
 		if(novoJogo) {
 			for (int i = 0; i < tamTab; i++) {
 				boolean flag = false;
@@ -60,9 +65,9 @@ public class Tabuleiro extends JPanel {
 								coluna, linha, null);
 						flag = true;
 					} else {
-						g.drawImage(this.getImage(""), deslocamentoX
-								+ (j * coluna), deslocamentoY + (i * linha),
-								coluna, linha, null);
+					//	g.drawImage(this.getImage(""), deslocamentoX
+					//			+ (j * coluna), deslocamentoY + (i * linha),
+					//			coluna, linha, null);
 						flag = false;
 					}
 	
@@ -92,9 +97,9 @@ public class Tabuleiro extends JPanel {
 			for (int i = 0; i < tamTab; i++) {
 				for (int j = 0; j < tamTab; j++) {
 					if(!peca[i][j].isEhPeca()){
-						g.drawImage(this.getImage(""), deslocamentoX
-								+ (j * coluna), deslocamentoY + (i * linha),
-								coluna, linha, null);
+				//		g.drawImage(this.getImage(""), deslocamentoX
+				//				+ (j * coluna), deslocamentoY + (i * linha),
+				//				coluna, linha, null);
 					}else if (peca[i][j].isSelecionada()) {
 						g.drawImage(this.getImage(imagenCelOnSel), deslocamentoX
 								+ (j * coluna), deslocamentoY + (i * linha),
@@ -170,7 +175,9 @@ public class Tabuleiro extends JPanel {
 								} else if (validaJogada(x, y)) {
 									System.out.println("Jogada Valida");
 									contaPeca--;
+									principal.player.setPontos(contaPeca);
 									System.out.println("Pecas Restantes: " + contaPeca);
+									principal.jlPecas.setText("Peças: " + contaPeca);
 									
 								}
 							}

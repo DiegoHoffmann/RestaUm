@@ -1,0 +1,6 @@
+Diego;7
+Teste;1
+asasdasd;1
+DIego;1
+DiegoA;27
+Diego2;26
